@@ -13,7 +13,12 @@ int main()
 	bool playerTurn = true;
 
 	// Seed the random number generator
-	
+	srand(time(0));
+
+
+	int damage = rand() % 5 + 15; // Random damage between 15 and 20
+	int block = rand() % 5 + 5; // Random block between 5 and 10
+	int special = rand() % 10 + 20; // Random special damage between 20 and 30
 
 	std::vector<std::string> actions = { "Attack", "Defend", "Special" };
     std::cout << "It's your turn, what to do?!\n\n";
@@ -30,17 +35,17 @@ int main()
 		{
 		case 1:
 			std::cout << "You chose to Attack!\n";
-			std::cout << "You dealed 10 damage!\n";
+			std::cout << "You dealed " << damage << " damage!\n";
 			playerTurn = false; // End player's turn after an action
 			break;
 		case 2:
 			std::cout << "You chose to Defend!\n";
-			std::cout << "You blocked 5 damage!\n";
+			std::cout << "You blocked " << block << " damage!\n";
 			playerTurn = false; // End player's turn after an action
 			break;
 		case 3:
 			std::cout << "You chose to use a Special move!\n";
-			std::cout << "You dealt 20 damage!\n";
+			std::cout << "You dealt " << special << " damage!\n";
 			playerTurn = false; // End player's turn after an action
 			break;
 		default:
@@ -49,4 +54,6 @@ int main()
 			break;
 		}
 	}
+
+	return 0;
 }
