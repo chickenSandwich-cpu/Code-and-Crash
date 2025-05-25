@@ -1,20 +1,52 @@
-// Code and Crash.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+// Code and Crash - A simple turn-based combat system in C++
 #include <iostream>
+#include <string>
+#include <vector>
+#include <cstdlib> // For std::rand() and std::srand
+#include <ctime>   // For std::time
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	int choice;
+	int playerHealth = 100;
+	int enemyHealth = 200;
+	bool playerTurn = true;
+
+	// Seed the random number generator
+	
+
+	std::vector<std::string> actions = { "Attack", "Defend", "Special" };
+    std::cout << "It's your turn, what to do?!\n\n";
+	std::cout << "Your Health: " << playerHealth << "\t|\tEnemy Health: " << enemyHealth << "\n\n";
+	for (int i = 0; i < actions.size(); i++)
+	{
+		std::cout << "\t" << i + 1 << ". " << actions[i] << "\n";
+	}
+
+	while (playerTurn)
+	{
+		std::cin >> choice;
+		switch (choice)
+		{
+		case 1:
+			std::cout << "You chose to Attack!\n";
+			std::cout << "You dealed 10 damage!\n";
+			playerTurn = false; // End player's turn after an action
+			break;
+		case 2:
+			std::cout << "You chose to Defend!\n";
+			std::cout << "You blocked 5 damage!\n";
+			playerTurn = false; // End player's turn after an action
+			break;
+		case 3:
+			std::cout << "You chose to use a Special move!\n";
+			std::cout << "You dealt 20 damage!\n";
+			playerTurn = false; // End player's turn after an action
+			break;
+		default:
+			std::cout << "Invalid choice! Please select a valid action.\n";
+			std::cout << "It's your turn, what to do?!\n";
+			break;
+		}
+	}
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
