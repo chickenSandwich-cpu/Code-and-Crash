@@ -37,7 +37,6 @@ int main()
 		case 1:
 			std::cout << "You chose to Attack!\n";
 			std::cout << "You dealt " << playerDamage << " damage!\n";
-			enemyHealth -= playerDamage;
 			break;
 		case 2:
 			std::cout << "You chose to Defend!\n";
@@ -46,7 +45,6 @@ int main()
 		case 3:
 			std::cout << "You chose to use a Special move!\n";
 			std::cout << "You dealt " << playerSpecial << " damage!\n";
-			enemyHealth -= playerSpecial;
 			break;
 		default:
 			std::cout << "Invalid choice! Please select a valid action.\n";
@@ -63,10 +61,17 @@ int main()
 			case 1:
 				std::cout << "Enemy chose to Attack!\n";
 				std::cout << "Enemy dealt " << enemyDamage << " damage!\n";
+				if (choice == 1)
+				{
+					enemyHealth -= playerDamage;
+				}
+				else if (choice == 3)
+				{
+					enemyHealth -= playerSpecial;
+				}
 				if (choice == 2) // If player defended
 				{
-					std::cout << "You blocked " << playerBlock << " damage!\n";
-					playerHealth -= std::max(5, enemyDamage - playerBlock); // Reduce player health by the damage minus the block amount
+					playerHealth -= std::max(0, enemyDamage - playerBlock); // Reduce player health by the damage minus the block amount
 				}
 				else // If player did not defend
 				{
@@ -79,12 +84,12 @@ int main()
 				if (choice == 1) // If player attacked
 				{
 					std::cout << "Enemy blocked your attack!\n";
-					enemyHealth -= std::max(5, playerDamage - enemyBlock); // Reduce enemy health by the damage minus the block amount
+					enemyHealth -= std::max(0, playerDamage - enemyBlock); // Reduce enemy health by the damage minus the block amount
 				}
 				else if (choice == 3) // If player used special
 				{
 					std::cout << "Enemy blocked your special move!\n";
-					enemyHealth -= std::max(5, playerSpecial - enemyBlock); // Reduce enemy health by the special damage minus the block amount
+					enemyHealth -= std::max(0, playerSpecial - enemyBlock); // Reduce enemy health by the special damage minus the block amount
 				}
 				break;
 			}
